@@ -1,7 +1,7 @@
 ﻿<Window x:Class="AudioPlayer.MainWindow"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  Title="Audio Player" Height="439" Width="500" Background="Transparent" WindowStyle="None" AllowsTransparency="True" MouseLeftButtonDown="Window_MouseLeftButtonDown" MouseRightButtonDown="Window_MouseRightButtonDown" WindowStartupLocation="CenterScreen">
+  Title="Audio Player" Height="439" Width="500" Background="Transparent" WindowStyle="None" AllowsTransparency="True" MouseLeftButtonDown="Window_MouseLeftButtonDown" MouseRightButtonDown="Window_MouseRightButtonDown" WindowStartupLocation="CenterScreen" Icon="music.ico">
     <Canvas Width="Auto" Height="Auto" Margin="10">
         <Path Fill="Orange" Stroke="Coral" Stretch="Fill" Width="452" Canvas.Top="10" Canvas.Left="10" Height="329.977">
             <Path.Data>
@@ -18,7 +18,7 @@
             </Path.Data>
         </Path>
         <Rectangle Fill="Orange" Height="20" Canvas.Left="10" Stroke="Coral" Canvas.Top="10" Width="452"/>
-        <Label Content="Audio Player" Canvas.Left="10" Canvas.Top="6" Foreground="Coral"/>
+        <Label Content="Audio Player" Canvas.Left="10" Canvas.Top="6" Foreground="#FF825507"/>
         <Button Focusable="False" Style="{StaticResource baseStyleSmallButtons}" BorderBrush="Coral" Content="{StaticResource closeIcon}"  Background="Orange" Canvas.Left="442" Canvas.Top="10" Width="20" Height="20" Click="Button_Click"/>
         <Button Focusable="False" Style="{StaticResource baseStyleSmallButtons}" Background="Orange" BorderBrush="Coral" Canvas.Left="422" Canvas.Top="10" Width="20" Height="20" Content="{DynamicResource minimizeIcon}" Click="Button_Click_1"/>
         <Button Style="{StaticResource previousSongButton}" Content="{StaticResource previousIcon}" Width="113" Canvas.Left="10" Canvas.Top="278" Height="62" Click="Button_Click_6"/>
@@ -26,10 +26,10 @@
         <Button Style="{StaticResource stopSongButton}" Content="{DynamicResource stopIcon}" Width="113" Canvas.Left="236" Canvas.Top="278" Height="62" Click="Button_Click_4"/>
         <Button Style="{StaticResource nextSongButton}" Width="113" Canvas.Left="349" Canvas.Top="278" Height="62" Content="{DynamicResource nextIcon}" Click="Button_Click_5"/>
         <ProgressBar x:Name="pbProgress" BorderBrush="Coral" Background="Orange" Height="7" Canvas.Left="10" Canvas.Top="236" Width="452" Foreground="Coral"/>
-        <Label x:Name="lblFullTimeSong" Content="" Canvas.Left="19" Canvas.Top="248" Width="44" Height="25"/>
-        <Label x:Name="lblTimeSong" Content="" Canvas.Left="409" Canvas.Top="248" Height="25" Width="44"/>
-        <Label x:Name="lblPlayedSong" HorizontalContentAlignment="Center" Content="" Canvas.Left="68" Canvas.Top="248" Width="336" Height="25"/>
-        <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="lvSongs" BorderBrush="Coral" BorderThickness="3" Height="146" Canvas.Left="19" Canvas.Top="60" Width="434" Background="Orange" SelectionChanged="lvSongs_SelectionChanged">
+        <Label x:Name="lblFullTimeSong" Content="" Canvas.Left="19" Canvas.Top="248" Width="44" Height="25" Foreground="#FF825507"/>
+        <Label x:Name="lblTimeSong" Content="" Canvas.Left="409" Canvas.Top="248" Height="25" Width="44" Foreground="#FF825507"/>
+        <Label x:Name="lblPlayedSong" HorizontalContentAlignment="Center" Content="" Canvas.Left="68" Canvas.Top="248" Width="336" Height="25" Foreground="#FF825507"/>
+        <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="lvSongs" BorderBrush="Coral" BorderThickness="3" Height="146" Canvas.Left="19" Canvas.Top="60" Width="434" Background="Orange" SelectionChanged="lvSongs_SelectionChanged" Foreground="#FF825507" MouseDoubleClick="lvSongs_MouseDoubleClick">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="BorderBrush" Value="Coral" />

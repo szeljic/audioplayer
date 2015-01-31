@@ -280,5 +280,10 @@ namespace AudioPlayer
                 };
             }
         }
+
+        private void lvSongs_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Button_Click_3(sender, e);
+        }
     }
 }

@@ -11,6 +11,7 @@
         <Image x:Key="nextIcon" Source="/images/glyphs/foreward.png" />
         <Image x:Key="ejectIcon" Source="/images/glyphs/eject.png" />
         <Image x:Key="stopIcon" Source="/images/glyphs/stop.png" />
+        <Image x:Key="musicIcon" Source="/images/glyphs/music.ico" />
         
         <Style x:Key="buttonStyle" TargetType="{x:Type Button}">
             <Setter Property="BorderBrush" Value="Coral"></Setter>
