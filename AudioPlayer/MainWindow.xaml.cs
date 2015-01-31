@@ -37,6 +37,8 @@ namespace AudioPlayer
         public MainWindow()
         {
             InitializeComponent();
+            mediaElement = new MediaElement();
+            mediaElement.UnloadedBehavior = MediaState.Manual;
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Tick += new EventHandler(timer_Tick);
@@ -117,7 +119,6 @@ namespace AudioPlayer
                 song = new Song() { Id = i.ToString(), Name = System.IO.Path.GetFileName(item.ToString()), Duration = dt.ToString("mm:ss"), Path = item };
                 allSongs.Add(i, song);
 
-
                 lvSongs.Items.Add(song);
                 i++;
             }
@@ -160,10 +161,9 @@ namespace AudioPlayer
                 Song song = (Song)lvSongs.SelectedItems[0];
                 string path = song.Path;
 
-                mediaElement = new MediaElement();
                 mediaElement.Volume = sbVolume.Value;
                 mediaElement.Source = new Uri(path);
-                mediaElement.UnloadedBehavior = MediaState.Manual;
+                
                 mediaElement.Play();
 
                 indexOfPlayingSong = Int32.Parse(song.Id);
@@ -206,80 +206,24 @@ namespace AudioPlayer
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            if (indexOfPlayingSong < allPaths.Count && mediaElement != null)
-            {
-                mediaElement.Stop();
 
-                indexOfPlayingSong++;
-                mediaElement.Source = new Uri(allPaths[indexOfPlayingSong - 1]);
-                mediaElement.UnloadedBehavior = MediaState.Manual;
-                mediaElement.Play();
+            indexOfPlayingSong = indexOfPlayingSong < allPaths.Count ? indexOfPlayingSong++ : 0;
 
-                lblFullTimeSong.Content = "00:00";
-                lblTimeSong.Content = allSongs[indexOfPlayingSong].Duration;
-                lblPlayedSong.Content = allSongs[indexOfPlayingSong].Name;
+            mediaElement.Stop();
+            lvSongs.SelectedIndex = indexOfPlayingSong;
+            Button_Click_3(sender, e);
 
-                status = "playing";
-                this.btnPlay.Content = new Image
-                {
-                    Source = new BitmapImage(new Uri("/images/glyphs/pause.png", UriKind.Relative)),
-                    VerticalAlignment = VerticalAlignment.Center
-                };
-            }
-            else if (indexOfPlayingSong == allPaths.Count)
-            {
-                mediaElement.Stop();
-
-                lblFullTimeSong.Content = "00:00";
-                lblTimeSong.Content = "00:00";
-                lblPlayedSong.Content = "";
-
-                status = "stoped";
-                this.btnPlay.Content = new Image
-                {
-                    Source = new BitmapImage(new Uri("/images/glyphs/play.png", UriKind.Relative)),
-                    VerticalAlignment = VerticalAlignment.Center
-                };
-            }
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-            if (indexOfPlayingSong > 1 && mediaElement != null)
-            {
-                mediaElement.Stop();
 
-                indexOfPlayingSong--;
-                mediaElement.Source = new Uri(allPaths[indexOfPlayingSong - 1]);
-                mediaElement.UnloadedBehavior = MediaState.Manual;
-                mediaElement.Play();
+            indexOfPlayingSong = indexOfPlayingSong > 0 ? indexOfPlayingSong - 1 : allPaths.Count - 1;
 
-                lblFullTimeSong.Content = "00:00";
-                lblTimeSong.Content = allSongs[indexOfPlayingSong].Duration;
-                lblPlayedSong.Content = allSongs[indexOfPlayingSong].Name;
+            mediaElement.Stop();
+            lvSongs.SelectedIndex = indexOfPlayingSong;
+            Button_Click_3(sender, e);
 
-                status = "playing";
-                this.btnPlay.Content = new Image
-                {
-                    Source = new BitmapImage(new Uri("/images/glyphs/pause.png", UriKind.Relative)),
-                    VerticalAlignment = VerticalAlignment.Center
-                };
-            }
-            else if (indexOfPlayingSong == 1)
-            {
-                mediaElement.Stop();
-
-                lblFullTimeSong.Content = "00:00";
-                lblTimeSong.Content = "00:00";
-                lblPlayedSong.Content = "";
-
-                status = "stoped";
-                this.btnPlay.Content = new Image
-                {
-                    Source = new BitmapImage(new Uri("/images/glyphs/play.png", UriKind.Relative)),
-                    VerticalAlignment = VerticalAlignment.Center
-                };
-            }
         }
 
         private void lvSongs_MouseDoubleClick(object sender, MouseButtonEventArgs e)
