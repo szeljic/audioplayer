@@ -161,6 +161,7 @@ namespace AudioPlayer
                 string path = song.Path;
 
                 mediaElement = new MediaElement();
+                mediaElement.Volume = sbVolume.Value;
                 mediaElement.Source = new Uri(path);
                 mediaElement.UnloadedBehavior = MediaState.Manual;
                 mediaElement.Play();
@@ -284,6 +285,14 @@ namespace AudioPlayer
         private void lvSongs_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Button_Click_3(sender, e);
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (mediaElement != null)
+            {
+                mediaElement.Volume = sbVolume.Value;
+            }
         }
     }
 }

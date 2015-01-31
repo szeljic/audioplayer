@@ -12,7 +12,40 @@
         <Image x:Key="ejectIcon" Source="/images/glyphs/eject.png" />
         <Image x:Key="stopIcon" Source="/images/glyphs/stop.png" />
         <Image x:Key="musicIcon" Source="/images/glyphs/music.ico" />
-        
+
+        <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#FFF" Offset="0.0"/>
+                    <GradientStop Color="#CCC" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="NormalBorderBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#CCC" Offset="0.0"/>
+                    <GradientStop Color="#444" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="ScrollBarNormalBrush" StartPoint="0,0" EndPoint="1,0">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#FFF" Offset="0.0"/>
+                    <GradientStop Color="#CCC" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="ScrollBarBorderBrush" StartPoint="0,0" EndPoint="1,0">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#CCC" Offset="0.0"/>
+                    <GradientStop Color="#444" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
         <Style x:Key="buttonStyle" TargetType="{x:Type Button}">
             <Setter Property="BorderBrush" Value="Coral"></Setter>
             <Setter Property="Background" Value="Orange"></Setter>
@@ -120,6 +153,73 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="SliderThumbStyle" TargetType="Thumb">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="OverridesDefaultStyle" Value="false"/>
+            <Setter Property="Height" Value="18"/>
+            <Setter Property="Width" Value="18"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Ellipse  Stroke="Coral"
+                          StrokeThickness="1"
+                          Name="Ellipse" 
+                          Fill="Orange" />
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Ellipse" Property="Fill" Value="DarkOrange"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Ellipse" Property="Fill" Value="Coral"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Slider" x:Key="AppSliderStyle">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Slider">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" Name="row" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" Name="column" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Border Name="PART_Border"
+                           BorderBrush="Coral" BorderThickness="0"
+                           Padding="2"
+                          Grid.Row="1" Grid.Column="1"
+                           Width="{TemplateBinding Width}"
+                           Height="{TemplateBinding Height}"
+                           Background="Coral"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Center" />
+                            <Track Name="PART_Track"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Center"
+                              Grid.Row="1" Grid.Column="1"
+                              Width="{TemplateBinding Width}"
+                              Height="{TemplateBinding Height}">
+                                <Track.Thumb>
+                                    <Thumb Style="{StaticResource SliderThumbStyle}" />
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
 
     </Application.Resources>
 </Application>

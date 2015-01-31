@@ -29,7 +29,7 @@
         <Label x:Name="lblFullTimeSong" Content="" Canvas.Left="19" Canvas.Top="248" Width="44" Height="25" Foreground="#FF825507"/>
         <Label x:Name="lblTimeSong" Content="" Canvas.Left="409" Canvas.Top="248" Height="25" Width="44" Foreground="#FF825507"/>
         <Label x:Name="lblPlayedSong" HorizontalContentAlignment="Center" Content="" Canvas.Left="68" Canvas.Top="248" Width="336" Height="25" Foreground="#FF825507"/>
-        <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="lvSongs" BorderBrush="Coral" BorderThickness="3" Height="146" Canvas.Left="19" Canvas.Top="60" Width="434" Background="Orange" SelectionChanged="lvSongs_SelectionChanged" Foreground="#FF825507" MouseDoubleClick="lvSongs_MouseDoubleClick">
+        <ListView x:Name="lvSongs" BorderBrush="Coral" BorderThickness="3" Height="148" Canvas.Left="19" Canvas.Top="60" Width="434" Background="Orange" SelectionChanged="lvSongs_SelectionChanged" Foreground="#FF825507" MouseDoubleClick="lvSongs_MouseDoubleClick">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="BorderBrush" Value="Coral" />
@@ -55,5 +55,6 @@
             </ListView.View>
         </ListView>
         <Button Focusable="False" BorderBrush="Coral" Background="Orange" Style="{StaticResource baseStyleSmallButtons}" Content="{DynamicResource ejectIcon}" Canvas.Left="19" Canvas.Top="35" Width="20" Height="20" Click="Button_Click_2"/>
+        <Slider Style="{StaticResource AppSliderStyle}" x:Name="sbVolume" Canvas.Left="367" Canvas.Top="213" Width="75" Value="0.5" ValueChanged="Slider_ValueChanged" Maximum="1"/>
     </Canvas>
 </Window>
