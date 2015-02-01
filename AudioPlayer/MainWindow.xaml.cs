@@ -130,12 +130,14 @@ namespace AudioPlayer
             if (status == "change" && mediaElement != null)
             {
                 mediaElement.Stop();
+                status = "stoped";
             }
 
             if (status == "playing")
             {
                 mediaElement.Pause();
                 status = "paused";
+
                 this.btnPlay.Content = new Image
                 {
                     Source = new BitmapImage(new Uri("/images/glyphs/play.png", UriKind.Relative)),
@@ -217,9 +219,8 @@ namespace AudioPlayer
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-
-            indexOfPlayingSong = indexOfPlayingSong > 0 ? indexOfPlayingSong - 1 : allPaths.Count - 1;
-
+            indexOfPlayingSong = indexOfPlayingSong > 0 ? --indexOfPlayingSong : allPaths.Count - 1;
+            
             mediaElement.Stop();
             lvSongs.SelectedIndex = indexOfPlayingSong;
             Button_Click_3(sender, e);
