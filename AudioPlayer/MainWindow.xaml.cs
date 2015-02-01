@@ -84,11 +84,7 @@ namespace AudioPlayer
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
 
-            if (lvSongs.Items.Count > 0)
-            {
-                lvSongs.Items.Clear();
-                allSongs.Clear();
-            }
+            
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.DefaultExt = ".mp3";
@@ -102,6 +98,11 @@ namespace AudioPlayer
 
             if (result == true)
             {
+                if (lvSongs.Items.Count > 0)
+                {
+                    lvSongs.Items.Clear();
+                    allSongs.Clear();
+                }
                 paths = openFileDialog.FileNames;
             }
 
@@ -229,7 +230,18 @@ namespace AudioPlayer
 
         private void lvSongs_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Button_Click_3(sender, e);
+            //Double click on empty space in ListView
+            DependencyObject obj = (DependencyObject)e.OriginalSource;
+
+            while (obj != null && obj != lvSongs)
+            {
+                if (obj.GetType() == typeof(ListViewItem))
+                {
+                    Button_Click_3(sender, e);
+                    break;
+                }
+                obj = VisualTreeHelper.GetParent(obj);
+            }
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
