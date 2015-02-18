@@ -220,7 +220,7 @@ namespace AudioPlayer
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-            indexOfPlayingSong = indexOfPlayingSong > 0 ? --indexOfPlayingSong : allPaths.Count - 1;
+            indexOfPlayingSong = indexOfPlayingSong > 0 ? --indexOfPlayingSong - 1 : allPaths.Count - 1;
             
             mediaElement.Stop();
             lvSongs.SelectedIndex = indexOfPlayingSong;
